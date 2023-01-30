@@ -1,1 +1,1 @@
-# lua_plugin_myepitech
+my-epitech.nvim
