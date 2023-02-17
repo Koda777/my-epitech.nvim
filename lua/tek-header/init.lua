@@ -5,89 +5,17 @@
 -- Version: 1.0
 -- Date: 2020-03-02
 
--- set shortcut
-vim.api.nvim_set_keymap("n", "<leader>h", ":lua Header()<CR>", { noremap = true, silent = false })
-
-local file_name = vim.fn.expand("%:t")
-
--- get project name
-local project_name = function()
-	vim.api.nvim_command("call inputsave()")
-	local name = vim.fn.input("Project name: ")
-	if name == "" then
-		-- print("Project name generated from current directory. If you want to change it, please use <leader>h")
-		name = vim.fn.split(vim.fn.getcwd(), "/")[#vim.fn.split(vim.fn.getcwd(), "/")]
-	end
-	return name
-end
-
--- get project description
-local project_description = function()
-	vim.api.nvim_command("call inputsave()")
-	local description = vim.fn.input("Project description: ")
-
-	return (description == "" and file_name or description)
-end
-
--- generate header
-local header = function()
-	local header = string.format(
-		"/*\n** EPITECH PROJECT, %d\n** %s\n** File description:\n** %s\n*/",
-		os.date("%Y"),
-		project_name(),
-		project_description()
-	)
-	return header
-end
-
-local header_line = function()
-	local header_lines = {}
-	for line in string.gmatch(header(), "[^\n]+") do
-		table.insert(header_lines, line)
-	end
-	return header_lines
-end
-
--- set header style
-local HeaderStyle = function(index, line)
-	local buf = vim.api.nvim_get_current_buf()
-	local cursor = vim.api.nvim_win_get_cursor(0)
-	vim.api.nvim_buf_set_lines(buf, index, index, false, { line })
-	vim.api.nvim_win_set_cursor(0, cursor)
-end
-
--- check if header is already set
-local check_header = function()
-	local buf = vim.api.nvim_get_current_buf()
-	local first_line = vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1]
-	if string.match(first_line, "^/%*") then
-		return true
-	end
-	return false
-end
-
--- check extension
-
-local is_valid = function()
-	local extension = vim.fn.expand("%:e")
-
-	if extension == "cpp" or extension == "hpp" then
-		return true
-	end
-	return false
-end
-
 -- set header
 function Header()
-	if not is_valid() then
+	if not IsValid() then
 		print("Warning: This file is not a C++ file")
 		return
 	end
-	if check_header() then
+	if CheckHeader() then
 		print("Warning: Header Epitech already set")
 		return
 	end
-	local header_lines = header_line()
+	local header_lines = HeaderLine()
 	for i, line in ipairs(header_lines) do
 		HeaderStyle(i - 1, line)
 	end
