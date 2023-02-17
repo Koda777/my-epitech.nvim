@@ -56,8 +56,37 @@ local HeaderStyle = function(index, line)
 	vim.api.nvim_win_set_cursor(0, cursor)
 end
 
+-- check if header is already set
+local check_header = function()
+	local buf = vim.api.nvim_get_current_buf()
+	local first_line = vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1]
+	if string.match(first_line, "^/%*") then
+		return true
+	end
+	return false
+end
+
+-- check extension
+
+local is_valid = function()
+	local extension = vim.fn.expand("%:e")
+
+	if extension == "cpp" or extension == "hpp" then
+		return true
+	end
+	return false
+end
+
 -- set header
 function Header()
+	if not is_valid() then
+		print("Warning: This file is not a C++ file")
+		return
+	end
+	if check_header() then
+		print("Warning: Header Epitech already set")
+		return
+	end
 	local header_lines = header_line()
 	for i, line in ipairs(header_lines) do
 		HeaderStyle(i - 1, line)
