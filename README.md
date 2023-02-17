@@ -20,7 +20,6 @@ Lua
 Voici un exemple de ce à quoi ressemblera le fichier d'en-tête généré :
 
 ```c
-Copy code
 /*
 ** EPITECH PROJECT, 2023
 ** My Project
@@ -34,7 +33,4 @@ Copy code
 #endif /* !MY_PROJECT_H_ */
 ```
 ## Crédits
-Cet outil a été développé par [votre nom]. N'hésitez pas à contribuer en signalant des problèmes ou en proposant des améliorations.
-
-
-
+Cet outil a été développé par Koda. N'hésitez pas à contribuer en signalant des problèmes ou en proposant des améliorations.
