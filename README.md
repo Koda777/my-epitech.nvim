@@ -1,11 +1,9 @@
 # Générateur de fichiers d'en-tête Epitech
 [![Github License](https://img.shields.io/github/license/Koda777/tek-header.nvim)](https://github.com/Koda777/tek-header.nvim/blob/master/LICENSE)
-
-Cet outil permet de générer facilement des fichiers d'en-tête formatés selon les normes d'Epitech.
+- Cet outil permet de générer facilement des fichiers d'en-tête formatés selon les normes d'Epitech.
 
 ## Prérequis
-Neovim (ou Vim)
-Lua
+- Neovim (ou Vim)
 
 ## Installation
 - Clonez ce dépôt : git clone https://github.com/votre-nom/generateur-headers-epitech.git
