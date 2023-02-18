@@ -1,4 +1,5 @@
 # Générateur de fichiers d'en-tête Epitech
+[![Github License](https://img.shields.io/github/license/Koda777/tek-header.nvim)](https://github.com/Koda777/tek-header.nvim/blob/master/LICENSE)
 Cet outil permet de générer facilement des fichiers d'en-tête formatés selon les normes d'Epitech.
 
 ## Prérequis
